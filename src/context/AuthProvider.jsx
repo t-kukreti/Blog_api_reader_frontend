@@ -1,12 +1,69 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 
-export function AuthProvider({ children }){
-    const [isLoggedIn, setIsLoggedIn] = useState( !!localStorage.getItem("token"));
-    const [isAuthor, setIsAuthor] = useState(false);
-    return (
-        <AuthContext.Provider value= {{isLoggedIn, setIsLoggedIn, isAuthor, setIsAuthor}}>
-        {children}
-        </AuthContext.Provider>
-    );
+export function AuthProvider({ children }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("token")
+  );
+
+  const [isAuthor, setIsAuthor] = useState(false);
+  const [authLoading, setIsAuthLoading] = useState(true);
+
+  useEffect(() => {
+    async function getCurrentUser() {
+      const token = localStorage.getItem("token");
+
+      if (!token){
+        setIsAuthLoading(false);
+        return ;
+      };
+
+      try{
+
+          
+          const response = await fetch(
+              "http://localhost:8000/auth/me",
+              {
+                  headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            
+            
+            if (!response.ok) {
+                localStorage.removeItem('token');
+                setIsLoggedIn(false);
+                setIsAuthor(false);
+            }
+
+            const data = await response.json();
+
+            setIsLoggedIn(true);
+            setIsAuthor(data.user.isAuthor);
+            
+        }catch(err){
+            console.error(err);
+        }finally{
+
+            setIsAuthLoading(false);
+        }
+    }
+
+    getCurrentUser();
+  }, []);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+        isAuthor,
+        setIsAuthor,
+        authLoading,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
