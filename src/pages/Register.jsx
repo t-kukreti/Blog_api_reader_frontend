@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
+  
 
 function Register() {
     const navigate = useNavigate();
+    
     async function handleSubmit(e){
     e.preventDefault();
 

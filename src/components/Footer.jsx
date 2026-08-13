@@ -6,7 +6,6 @@ function Footer() {
           <h2>The Journal</h2>
           <p>A place for thoughts, ideas, and stories.</p>
         </div>
-
         <div className="footer-links">
           <a href="/">Home</a>
           <a href="/about">About</a>

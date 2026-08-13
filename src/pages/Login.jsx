@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 
 
 function Login() {
+  const {setIsLoggedIn} = useContext(AuthContext);
     const navigate = useNavigate();
     async function handleSubmit(e){
     e.preventDefault();
@@ -25,7 +27,7 @@ function Login() {
     }
     // store the jwt in localstorage
     localStorage.setItem("token", data.token);
-
+    setIsLoggedIn(true);
     navigate('/');
     console.log("logged in", data);
 
