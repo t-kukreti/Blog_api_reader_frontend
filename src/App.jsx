@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ReaderViewPost from "./pages/ReaderViewPost";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/posts/:id" element={<ReaderViewPost/>}/>
       </Routes>
     </BrowserRouter>
     </AuthProvider>

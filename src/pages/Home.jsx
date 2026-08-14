@@ -1,32 +1,30 @@
-import PostCard from "../components/PostCard";
-const posts = [
-  {
-    id: 1,
-    title: "Understanding REST APIs",
-    excerpt: "A look at how REST APIs actually work.",
-    author: "Tarun",
-    date: "Aug 10, 2026",
-    readTime: 5
-  },
-  {
-    id: 2,
-    title: "Learning React",
-    excerpt: "Things I've learned while building my first React application.",
-    author: "Tarun",
-    date: "Aug 8, 2026",
-    readTime: 4
-  },
-  {
-    id: 3,
-    title: "Why I Like Backend Development",
-    excerpt: "Some thoughts on building APIs and working with databases.",
-    author: "Tarun",
-    date: "Aug 5, 2026",
-    readTime: 6
-  }
-];
+import { useEffect, useState } from "react";
+import ReaderPostCard from "../components/ReaderPostCard";
+
+
 
 function Home(){
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        async function getPosts(){
+            try{
+
+                const response = await fetch('http://localhost:8000/posts');
+                const data = await response.json();
+
+                if(!response.ok){
+                    console.log(data.message);
+                    return;
+                }
+
+                setPosts(data);
+
+            }catch(err){
+                console.log(err);
+            }
+        }
+        getPosts();
+    }, []);
     return (
         <>
         <main>
@@ -39,9 +37,13 @@ function Home(){
 
             <section className="posts">
                 <h2>Latest</h2>
-                {posts.map(post => (
-                    <PostCard key={post.id} post={post}></PostCard>
-                ))}
+                {posts.length === 0 ? (
+                    <p>No posts published yet.</p>
+                ): (
+                    posts.map(post => (
+                       <ReaderPostCard key={post.id} post={post}/>
+                    ))
+                )}
             </section>
 
 

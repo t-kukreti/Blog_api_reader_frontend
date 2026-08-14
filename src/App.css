@@ -121,6 +121,53 @@ body{
 .post-card:hover h2 {
   color: #555;
 }
+/* reader post card  */
+
+.reader-post-card {
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  border: 1px solid #5a554c;
+  border-radius: 10px;
+  background-color: #3a3630;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reader-post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.reader-post-card a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.reader-post-card h3 {
+  margin: 0 0 0.75rem;
+  color: #fcbb0b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.reader-post-card p {
+  margin: 0 0 1rem;
+  color: #c8c8c8;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.reader-post-card span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #cf830e;
+}
+
+.reader-post-card:hover h3 {
+  color: #ffd34e;
+}
+
 
 /* footer  */
 
@@ -249,4 +296,53 @@ body{
 .auth-switch a {
   color: #222;
   font-weight: 600;
+}
+
+/* reader view  */
+.reader-view {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 70px;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  color: #111;
+}
+
+.reader-view article {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.reader-post-status {
+  margin-bottom: 18px;
+  color: #777;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.reader-view h1 {
+  margin: 0 0 45px;
+  font-family: Georgia, serif;
+  font-size: 52px;
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+.reader-post-content {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  line-height: 1.85;
+  color: #d9b812;
+  white-space: pre-wrap;
 }

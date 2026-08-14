@@ -14,7 +14,7 @@ function Navbar() {
   }
 
   function handleRedirectToAuthorDashboard() {
-    window, location.href = "http://localhost:5174/login";
+    window.location.href = "http://localhost:5174/login";
   }
 
   if(authLoading){
