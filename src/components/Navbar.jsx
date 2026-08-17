@@ -4,11 +4,13 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
-  const { isLoggedIn, setIsLoggedIn, isAuthor, authLoading } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, isAuthor, authLoading, setCurrentUser, setIsAuthor } = useContext(AuthContext);
   const navigate = useNavigate();
 
   function handleLogOut() {
     localStorage.removeItem("token");
+    setCurrentUser(null);
+    setIsAuthor(false);
     setIsLoggedIn(false);
     navigate('/');
   }

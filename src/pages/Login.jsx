@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 
 
 function Login() {
-  const {setIsLoggedIn, setIsAuthor} = useContext(AuthContext);
+  const {setIsLoggedIn, setIsAuthor, setCurrentUser} = useContext(AuthContext);
     const navigate = useNavigate();
     async function handleSubmit(e){
     e.preventDefault();
@@ -29,6 +29,7 @@ function Login() {
     localStorage.setItem("token", data.token);
     setIsLoggedIn(true);
     setIsAuthor(data.user.isAuthor);
+    setCurrentUser(data.user);
     navigate('/');
     console.log("logged in", data);
 

@@ -9,6 +9,8 @@ export function AuthProvider({ children }) {
   const [isAuthor, setIsAuthor] = useState(false);
   const [authLoading, setIsAuthLoading] = useState(true);
 
+  const [currentUser, setCurrentUser] = useState(null);
+
   useEffect(() => {
     async function getCurrentUser() {
       const token = localStorage.getItem("token");
@@ -40,6 +42,7 @@ export function AuthProvider({ children }) {
             const data = await response.json();
 
             setIsLoggedIn(true);
+            setCurrentUser(data.user);
             setIsAuthor(data.user.isAuthor);
             
         }catch(err){
@@ -60,6 +63,8 @@ export function AuthProvider({ children }) {
         setIsLoggedIn,
         isAuthor,
         setIsAuthor,
+        currentUser,
+        setCurrentUser,
         authLoading,
       }}
     >
