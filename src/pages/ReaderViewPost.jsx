@@ -83,6 +83,7 @@ function ReaderViewPost() {
           {post.content}
         </div>
       </article>
+      
       <CommentForm
         postId={post.id}
         onCommentCreated={(comment) => {
@@ -96,24 +97,6 @@ function ReaderViewPost() {
       <CommentList
         comments={comments}
         postId={post.id}
-        onCommentDeleted={(id) => {
-          setComments((currentComments) =>
-            currentComments.filter((comment) => comment.id !== id)
-          );
-        }}
-        onCommentUpdated={(updatedComment) => {
-          setComments((currentComments) =>
-            currentComments.map((comment) =>
-              comment.id === updatedComment.id
-                ? {
-                  ...comment,
-                  content: updatedComment.content,
-                  updatedAt: updatedComment.updatedAt
-                }
-                : comment
-            )
-          );
-        }}
       />
     </main>
   );
